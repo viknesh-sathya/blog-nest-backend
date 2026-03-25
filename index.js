@@ -18,8 +18,6 @@ const app = express();
 // MIDDLEWARES
 app.use(helmet());
 
-import cors from "cors";
-
 const allowedOrigins = process.env.CLIENT_URL.split(",");
 
 app.use(
