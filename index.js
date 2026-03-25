@@ -18,9 +18,19 @@ const app = express();
 // MIDDLEWARES
 app.use(helmet());
 
+import cors from "cors";
+
+const allowedOrigins = process.env.CLIENT_URL.split(",");
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   }),
 );
@@ -28,15 +38,6 @@ app.use(clerkMiddleware());
 app.use(morgan("dev"));
 app.use("/webhooks", webHookRouter);
 app.use(express.json());
-
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept",
-  );
-  next();
-});
 
 // ROUTES
 app.use("/api/v1/users", userRouter);
