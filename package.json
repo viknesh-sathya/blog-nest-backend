@@ -1,0 +1,40 @@
+{
+  "name": "blog-nest",
+  "version": "1.0.0",
+  "description": "Backend API for BlogNest (Express + MongoDB + Clerk + ImageKit)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blog",
+    "express",
+    "mongodb",
+    "clerk",
+    "imagekit"
+  ],
+  "author": "viknesh-sathya",
+  "license": "ISC",
+  "dependencies": {
+    "@clerk/express": "^2.0.6",
+    "body-parser": "^2.2.2",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "imagekit": "^6.0.0",
+    "mongodb": "^7.1.0",
+    "mongoose": "^9.3.1",
+    "morgan": "^1.10.1",
+    "svix": "^1.89.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}
