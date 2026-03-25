@@ -25,14 +25,14 @@ const clerkWebHook = async (req, res) => {
       username:
         event.data.username || event.data.email_addresses[0].email_address,
       email: event.data.email_addresses[0].email_address,
-      img: event.data.profile_img_url,
+      img: event.data.profile_image_url,
     });
 
-    await newUser.save();
+    const user = await newUser.save();
+    console.log(user ? "User created" : "user NOT created");
   }
   if (event.type === "user.updated") {
-    console.log(event);
-    await User.findOneAndUpdate(
+    const updatedUser = await User.findOneAndUpdate(
       { clerkUserId: event.data.id },
       {
         username:
@@ -42,6 +42,7 @@ const clerkWebHook = async (req, res) => {
       },
       { new: true },
     );
+    console.log(updatedUser ? "User updated✅" : "user NOT updated❌");
   }
 
   if (event.type === "user.deleted") {
