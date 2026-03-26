@@ -29,6 +29,7 @@
     "mongodb": "^7.1.0",
     "mongoose": "^9.3.1",
     "morgan": "^1.10.1",
+    "slugify": "^1.6.8",
     "svix": "^1.89.0"
   },
   "devDependencies": {

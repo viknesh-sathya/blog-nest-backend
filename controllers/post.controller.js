@@ -2,6 +2,7 @@ import { getAuth } from "@clerk/express";
 import Post from "../models/post.model.js";
 import User from "../models/user.model.js";
 import ImageKit from "imagekit";
+import slugify from "slugify";
 
 const getPosts = async (req, res) => {
   const page = parseInt(req.query.page) || 1;
@@ -99,7 +100,12 @@ const createPost = async (req, res) => {
       message: "User not found",
     });
 
-  let slug = req.body.title.replace(/ /g, "-").toLowerCase();
+  let slug = slugify(req.body.title, {
+    lower: true,
+    strict: true,
+    trim: true,
+  });
+
   let existingPost = await Post.findOne({ slug });
   let counter = 2;
   while (existingPost) {
